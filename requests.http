@@ -1,0 +1,33 @@
+POST http://localhost:8081/api/content
+Content-Type: application/json
+
+{
+  "id": 2,
+  "title": "My Second",
+  "desc": "A blog post (2)",
+  "status": "IDEA",
+  "contentType": "ARTICLE",
+  "dateCreated": "2023-10-26T09:22:51.231703545",
+  "dateUpdated": null,
+  "url": ""
+}
+
+###
+
+PUT http://localhost:8081/api/content/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": " ",
+  "desc": "A blog post",
+  "status": "IDEA",
+  "contentType": "ARTICLE",
+  "dateCreated": "2023-10-26T09:22:51.231703545",
+  "dateUpdated": null,
+  "url": ""
+}
+
+###
+
+DELETE http://localhost:8081/api/content/2
