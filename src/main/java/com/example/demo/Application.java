@@ -22,22 +22,22 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// populate database during initialization
-	@Bean
-	CommandLineRunner commandLineRunner(ContentRepository contentRepository) {
-		return args -> {
-			Content content = new Content(
-				null,
-				"Post created from CommandLineRunner",
-				"A blog post",
-				Status.IDEA,
-				Type.ARTICLE,
-				LocalDateTime.now(),
-				null,
-				""
-			);
+	// // populate database during initialization
+	// @Bean
+	// CommandLineRunner commandLineRunner(ContentRepository contentRepository) {
+	// 	return args -> {
+	// 		Content content = new Content(
+	// 			null,
+	// 			"Post created from CommandLineRunner",
+	// 			"A blog post",
+	// 			Status.IDEA,
+	// 			Type.ARTICLE,
+	// 			LocalDateTime.now(),
+	// 			null,
+	// 			""
+	// 		);
 
-			contentRepository.save(content);
-		};
-	}
+	// 		contentRepository.save(content);
+	// 	};
+	// }
 }
