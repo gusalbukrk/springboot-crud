@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -16,7 +17,7 @@ public record Content(
   @NotBlank
   String title,
 
-  // @Column('content_title') // custom column name
+  @Column(value = "description") // custom column name
   String desc,
   Status status,
   Type contentType,
