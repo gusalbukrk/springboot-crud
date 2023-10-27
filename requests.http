@@ -1,14 +1,20 @@
+GET http://localhost:8081/api/content
+
+###
+
+GET http://localhost:8081/api/content/2
+
+###
+
 POST http://localhost:8081/api/content
 Content-Type: application/json
 
 {
-  "id": 2,
   "title": "My Second",
   "desc": "A blog post (2)",
   "status": "IDEA",
   "contentType": "ARTICLE",
   "dateCreated": "2023-10-26T09:22:51.231703545",
-  "dateUpdated": null,
   "url": ""
 }
 
@@ -19,12 +25,10 @@ Content-Type: application/json
 
 {
   "id": 1,
-  "title": " ",
+  "title": "My Post...",
   "desc": "A blog post",
   "status": "IDEA",
   "contentType": "ARTICLE",
-  "dateCreated": "2023-10-26T09:22:51.231703545",
-  "dateUpdated": null,
   "url": ""
 }
 

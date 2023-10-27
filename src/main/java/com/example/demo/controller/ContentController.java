@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.model.Content;
-import com.example.demo.repository.ContentCollectionRepository;
+import com.example.demo.repository.ContentJdbcTemplateRepository;
 
 import jakarta.validation.Valid;
 
@@ -24,44 +23,37 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/content")
 @CrossOrigin
 public class ContentController {
-  private final ContentCollectionRepository repository;
+  private final ContentJdbcTemplateRepository repository;
 
-  public ContentController(ContentCollectionRepository repository) {
+  public ContentController(ContentJdbcTemplateRepository repository) {
     this.repository = repository;
   }
 
-  // make a request and find all the pieces of content in the system
   @GetMapping("")
   public List<Content> findAll() {
-    return repository.findAll();
+    return repository.getAllContent();
   }
 
   @GetMapping("/{id}")
   public Content findById(@PathVariable Integer id) {
-    return repository.findById(id).orElseThrow(
-      () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found...")
-    );
+    return repository.getContent(id);
   }
 
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
   public void create(@RequestBody Content content) {
-    repository.save(content);
+    repository.createContent(content);
   }
 
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @PutMapping("/{id}")
   public void update(@Valid @RequestBody Content content, @PathVariable Integer id) {
-    if (!repository.existsById(id)) {
-      throw new ResponseStatusException((HttpStatus.NOT_FOUND), "Content not found...", null);
-    }
-
-    repository.save(content);
+    repository.updateContent(content);
   }
   
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @DeleteMapping("/{id}")
   public void delete(@PathVariable Integer id) {
-    repository.delete(id);
+    repository.deleteContent(id);
   }
 }
